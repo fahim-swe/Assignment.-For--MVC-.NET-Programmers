@@ -1,0 +1,611 @@
+﻿
+<style>
+        table, td, th {  
+          border: 1px solid #ddd;
+          text-align: left;
+        }
+        
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        th, td {
+          padding: 15px;
+        }
+</style> 
+  <div class="container">
+        <div class="row">
+          <div class="lead col-3" style="box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;">
+            
+            <div class="list-group m-2">
+               
+            </div>
+
+          </div>
+          <div class="col-8 m-2 p-2" style="box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;" >
+            <div class="" >
+              <div class="">
+               
+                <button type="button" id="addCustomer" style="background-color: #4CAF50;border: none;color: white;padding: 5px 20px;text-align: center;text-decoration: none;display: inline-block;"  onclick="return clearTextBox();">Add New Customer</button>
+
+                <button type="button" id="editCustomer" style="background-color: #008CBA;border: none;color: white;padding: 5px 20px;text-align: center;text-decoration: none;display: inline-block;"  onclick="return editCustomer()">Edit</button>
+
+                <button type="button" id="updateCustomer" style="background-color: #008CBA;border: none;color: white;padding: 5px 20px;text-align: center;text-decoration: none;display: inline-block;"  onclick="return updateCustomer()">Update</button>
+
+
+                <button type="button" id="deleteCustomer" style="background-color: #f44336;border: none;color: white;padding: 5px 20px;text-align: center;text-decoration: none;display: inline-block;"  onclick="return deleteCustomer()">Delete</button>
+
+
+                <button type="button" id="saveCustomer" style="background-color: #555555;border: none;color: white;padding: 5px 20px;text-align: center;text-decoration: none;display: inline-block;"  onclick="return Add()">Save</button>
+
+                <button type="button" id="resetCustomer" style="background-color: #e7e7e7; color:black;border: none;padding: 5px 20px;text-align: center;text-decoration: none;display: inline-block;"  onclick="return clearTextBox()">Reset</button>
+              
+               
+            </div>
+            </div>
+            
+            <div class="">
+              <div class="">
+                <p>Basic Information</p>
+               
+
+              <form id="form" method="post" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">NAME</span>
+                  <input 
+                      placeholder="Customer Name"
+                      id="CustomerName"
+                      type="text" 
+                      class="form-control" 
+                      aria-label="Sizing example input" 
+                      aria-describedby="inputGroup-sizing-default">
+              </div>
+              <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">FATHER MOTHER</span>
+                  <input
+                      id="FatherName" 
+                      type="text" 
+                      placeholder="Father name"
+                      class="form-control" 
+                      aria-label="Sizing example input" 
+                      aria-describedby="inputGroup-sizing-default">
+              </div>
+
+              <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">MOTHER MOTHER</span>
+                  <input
+                      id="MotherName"
+                      placeholder="Mother name" 
+                      type="text" 
+                      class="form-control" 
+                      aria-label="Sizing example input" 
+                      aria-describedby="inputGroup-sizing-default">
+              </div>
+
+              <div class="input-group mb-3" >
+                  <span class="input-group-text" id="inputGroup-sizing-default">Marital Status</span>
+                  <div class="form-check m-2" id="MaritalSatus">
+                      <input 
+                          type="radio" 
+                          class="form-check-input" 
+                          id="radio1" 
+                          name="MaritalStatus" 
+                          value="1" 
+                          >Single
+                      <label class="form-check-label" for="radio1"></label>
+                    </div>
+                    <div class="form-check m-2">
+                      <input 
+                          type="radio" 
+                          class="form-check-input" 
+                          id="radio2" 
+                          name="MaritalStatus" 
+                          value="2" > Married
+                      <label class="form-check-label" for="radio2"></label>
+                    </div>
+
+                    <div class="form-check m-2">
+                      <input 
+                          type="radio" 
+                          class="form-check-input" 
+                          id="radio2" 
+                          name="MaritalStatus" 
+                          value="3" > Others
+                      <label class="form-check-label" for="radio2"></label>
+                    </div>
+                    
+              </div>
+              
+              <div class="input-group mb-3">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Country</span>
+                  <select class="form-select" id="Country" required="">
+                    <option value="N/A">Choose...</option>
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="India">India</option>
+                    <option value="Pakistan">Pakistan</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">PHOTO</span>
+                <input 
+                    class="form-control" 
+                    type="file"  
+                    accept="image/*"
+                    id="CustomerPhoto">
+
+                <img class="img-thumbnail" width="150px" height="150px" id="ItemPreview">
+              </div>
+              
+              </div>
+               
+            </div>
+
+                <div class="">
+                    <div class="">
+                        <table id="add-address">
+                         
+                        </table>
+                       
+
+                        <div style="display: flex; justify-content: end; margin-right: 40;">
+                            <button type="button" class="add_item_btn" id="resetCustomer" style="background-color: lightseagreen; color:whitesmoke;border: none;padding: 5px 20px;text-align: center;text-decoration: none;display: inline-block; margin-right: 100px;"  onclick="">Add Address</button>
+                        </div>
+                      
+                    </div>
+                </div>
+                
+              </div>
+            </form>
+            </div>
+          </div>
+
+
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.js"
+    integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+          
+           $('.add_item_btn').click(function(e){
+            e.preventDefault();
+            
+            $("#add-address").append(`<tr style="cursor: pointer;">
+                        <th scope="row">Address</th>
+                        <td colspan="3">
+                          <input value=""  class="addressData w-100"  type="text">
+                        </td>
+                        <td colspan="1">
+                            <button style="background-color: #4CAF50;border: none;color: white;padding: 10px 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 10px;" type="button" id="editAdd">Edit</button>
+
+
+                                <button class="addressBtn" style="background-color: #f44336;border: none;color: white;padding: 10px 20px;text-align: center;text-decoration: none;display: inline-block;font-size: 10px;" type="button">Delete</button>
+                        </td>
+                      </tr>`);
+
+
+                      $('.addressBtn').click(function(){
+                        $(this).parent().parent().remove();
+                      });
+           })
+        })
+    </script>
+
+    <script>
+        var activeCustomerId = null;
+        var defualtSelectCustomerId = null;
+  
+
+
+$(document).ready(function () {  
+    loadData();  
+});  
+
+
+
+$('#CustomerPhoto').on('change', function(){
+  console.log("Load....");
+  var input = $(this)[0];
+  var file = input.files[0];
+  var reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function(e){
+     $('#ItemPreview').attr('src', e.target.result);
+   }
+ });
+
+
+
+function loadData() {  
+
+
+    var html = '';
+    html += '<a class="list-group-item">First item</a>';
+
+    $('list-group').html(html);
+    $.ajax({  
+        url: "https://localhost:7287/Customer",  
+        type: "GET",  
+        contentType: "application/json;charset=utf-8",  
+        dataType: "json",  
+        success: function (result) {  
+            var html = '';  
+            var bool = true;
+          
+            $.each(result, function (key, item) {  
+              console.log(item.name);
+              if(bool) defualtSelectCustomerId = item.id;
+              bool = false;
+              html += '<a onclick="return getbyID(' + item.id + ')"  class="list-group-item" value = ' +  item.id +  '>' + item.name + '</a>';
+            });  
+            $('.list-group').html(html);  
+
+            getbyID( defualtSelectCustomerId);
+            
+        },  
+        error: function (errormessage) {  
+            alert(errormessage.responseText);  
+        }  
+    });  
+}  
+  
+
+
+function Add() {  
+    var res = validate();
+
+    if(activeCustomerId != -1) {
+      updateCustomer();
+      return ;
+    }
+
+    var address = [];
+    
+    $('.addressData').each(function(){ 
+      var textVal = $(this).val(); 
+      console.log(textVal);
+      address.push(textVal); 
+    });
+
+    console.log(address);
+
+    
+  var radioValue = $("input[type='radio'][name='MaritalStatus']:checked").val();
+  var cusObj = {
+      CustomerName : $('#CustomerName').val(),
+      FatherName : $('#FatherName').val(),
+      MotherName : $('#MotherName').val(),
+      MaritalSatus : radioValue,
+      Country: $('#Country').val(),
+      Addresss: address
+    };
+
+
+    var cusObjFrom = new FormData();
+    cusObjFrom.append('CustomerName',  $('#CustomerName').val());
+    cusObjFrom.append('FatherName',  $('#FatherName').val());
+    cusObjFrom.append('MotherName',  $('#MotherName').val());
+    cusObjFrom.append('MaritalStatus',  radioValue);
+    cusObjFrom.append('CountryName',  $('#Country').val());
+    cusObjFrom.append('Photo', $( '#CustomerPhoto' )[0].files[0] );
+  
+
+
+    $('.addressData').each(function(){ 
+      var textVal = $(this).val(); 
+      console.log(textVal);
+      address.push(textVal); 
+      cusObjFrom.append('Addresss[]', textVal);
+    });
+
+    console.log(cusObjFrom);
+
+    console.log(cusObj);
+    $.ajax({  
+        url: "https://localhost:7287/Customer",  
+        data: cusObjFrom,
+        type: "POST",  
+        processData: false,
+        contentType: false,
+        success: function (result) {  
+          console.log(result);
+          loadData();  
+        },  
+        error: function (errormessage) {  
+            console.log(errormessage.responseText);
+            alert(errormessage.responseText);  
+        }  
+    });  
+
+    clearTextBox();
+}  
+  
+function editCustomer()
+{
+    // show update btn
+
+    $('#editCustomer').hide();
+
+    $('#deleteCustomer').show();
+    $('#addCustomer').show();
+    $('#updateCustomer').show();
+    $('#saveCustomer').show();
+
+    $('#resetCustomer').hide();
+    $('.add_item_btn').show();
+    $("#CustomerPhoto").show();
+  
+
+
+    $('#CustomerName').prop( "disabled",false).css('border-color', 'grey');  
+    $('#FatherName').prop( "disabled", false).css('border-color', 'grey');
+    $('#MotherName').prop("disabled", false).css('border-color', 'grey');
+    $('#Country').prop( "disabled", false).css('border-color', 'grey');
+   
+    $("#radio1").prop( "disabled", false);
+    $("#radio2").prop( "disabled", false);
+    $("#radio3").prop( "disabled", false);
+
+    $("#CustomerPhoto").prop("disabled", false);
+    $('.add_item_btn').prop("disabled", false);
+
+    $('#add-address #editAdd').show();
+    $('#add-address #deleteAdd').show();
+    $('#add-address input').prop("disabled", false);
+
+}
+
+function updateCustomer()
+{
+    var radioValue = $("input[type='radio'][name='MaritalStatus']:checked").val();
+    var cusObjFrom = new FormData();
+    cusObjFrom.append('CustomerName',  $('#CustomerName').val());
+    cusObjFrom.append('FatherName',  $('#FatherName').val());
+    cusObjFrom.append('MotherName',  $('#MotherName').val());
+    cusObjFrom.append('MaritalStatus',  radioValue);
+    cusObjFrom.append('CountryName',  $('#Country').val());
+    cusObjFrom.append('Photo', $( '#CustomerPhoto' )[0].files[0] );
+  
+    $('.addressData').each(function(){ 
+      var textVal = $(this).val(); 
+      cusObjFrom.append('Addresss[]', textVal);
+    });
+
+
+    $.ajax({  
+        url: "https://localhost:7287/Customer/" + activeCustomerId,  
+        data: cusObjFrom,  
+        type: "PUT",  
+        processData: false,
+        contentType: false, 
+        success: function (result) {  
+            loadData(); 
+        },  
+        error: function (errormessage) {  
+            alert(errormessage.responseText);  
+        }  
+    });  
+    
+}
+
+function getbyID(cusID) {  
+    activeCustomerId = cusID;  
+    $('#editCustomer').show();
+    $('#updateCustomer').hide();
+    $('#deleteCustomer').show();
+    $('#addCustomer').show();
+    $('#saveCustomer').hide();
+
+    $('#resetCustomer').hide();
+    $('.add_item_btn').hide();
+    
+    
+    $('#CustomerName').prop( "disabled",true).css('border-color', 'grey');  
+    $('#FatherName').prop( "disabled", true).css('border-color', 'grey');
+    $('#MotherName').prop("disabled", true).css('border-color', 'grey');
+    $('#Country').prop( "disabled", true).css('border-color', 'grey');
+   
+    $("#radio1").prop( "disabled", true);
+    $("#radio2").prop( "disabled", true);
+    $("#radio3").prop( "disabled", true);
+    
+    $("#CustomerPhoto").hide();
+
+   
+    $.ajax({  
+        url: "https://localhost:7287/Customer/" + cusID,  
+        typr: "GET",  
+        contentType: "application/json;charset=UTF-8",  
+        dataType: "json",  
+        success: function (result) {  
+            console.log(result);
+            $("#CustomerName").val(result.customerName);
+            $("#FatherName").val(result.fatherName);
+            $("#MotherName").val(result.motherName);
+            $("#Country").val(result.country.countryName);
+            $('#ItemPreview').attr('src', `data:image/png;base64,${result.customerPhoto}`);
+
+          
+            
+            var html = '';
+            $('#add-address').html(html);
+            $.each(result.customerAddresses, function (key, item) {  
+
+              $("#add-address").append(`<tr style="cursor: pointer;">
+                        <th scope="row">Address</th>
+                        <td colspan="3">
+                          <input disabled value = ` + "\" " +item.cusAddress + "\"" + `  class="addressData w-100"  type="text">
+                        </td>
+                        <td colspan="1">
+                            <button  style="display: none;background-color: #4CAF50;border: none;color: white;padding: 10px 20px;text-align: center;text-decoration: none;font-size: 10px;" type="button" id="editAdd">Edit</button>
+
+                                <button id="deleteAdd" class="addressBtn" style="display: none;background-color: #f44336;border: none;color: white;padding: 10px 20px;text-align: center;text-decoration: none;font-size: 10px;" type="button">Delete</button>
+                        </td>
+                      </tr>`);
+
+
+                      $('.addressBtn').click(function(){
+                        $(this).parent().parent().remove();
+                      });
+            }); 
+            
+            $("#radio1").attr("checked", false);
+            $("#radio2").attr("checked", false);
+            $("#radio3").attr("checked", false);
+           
+            if(result.maritalStatus == 0){
+                $("#radio1").attr("checked", true);
+            }
+            else if(result.maritalStatus == 1){
+                $("#radio2").attr("checked", true);
+            }
+            else {
+                $("#radio2").attr("checked", true);
+            } 
+        },  
+        error: function (errormessage) {  
+            alert(errormessage.responseText);  
+        }  
+    });  
+    return false;  
+}  
+
+
+
+  
+function deleteCustomer()
+{
+  if(activeCustomerId == null) return false;
+
+  var ans = confirm("Are you sure you want to delete this Record?");  
+  
+  if (ans) {  
+        $.ajax({  
+            url:  "https://localhost:7287/Customer/" + activeCustomerId,  
+            type: "DELETE",  
+            contentType: "application/json;charset=UTF-8",  
+            dataType: "json",  
+            success: function (result) {  
+                console.log("Working " + result);
+                 
+            },  
+            error: function (errormessage) {  
+                
+                alert(errormessage.responseText);  
+            }  
+        });  
+    } 
+    
+  loadData(); 
+}
+  
+function Update() {  
+    var res = validate();  
+    if (res == false) {  
+        return false;  
+    }  
+    var empObj = {  
+        EmployeeID: $('#EmployeeID').val(),  
+        Name: $('#Name').val(),  
+        Age: $('#Age').val(),  
+        State: $('#State').val(),  
+        Country: $('#Country').val(),  
+    };  
+    $.ajax({  
+        url: "/Home/Update",  
+        data: JSON.stringify(empObj),  
+        type: "POST",  
+        contentType: "application/json;charset=utf-8",  
+        dataType: "json",  
+        success: function (result) {  
+            loadData();  
+            $('#myModal').modal('hide');  
+            $('#EmployeeID').val("");  
+            $('#Name').val("");  
+            $('#Age').val("");  
+            $('#State').val("");  
+            $('#Country').val("");  
+        },  
+        error: function (errormessage) {  
+            alert(errormessage.responseText);  
+        }  
+    });  
+}  
+  
+
+function Delele(ID) {  
+    var ans = confirm("Are you sure you want to delete this Record?");  
+    if (ans) {  
+        $.ajax({  
+            url: "/Home/Delete/" + ID,  
+            type: "POST",  
+            contentType: "application/json;charset=UTF-8",  
+            dataType: "json",  
+            success: function (result) {  
+                loadData();  
+            },  
+            error: function (errormessage) {  
+                alert(errormessage.responseText);  
+            }  
+        });  
+    }  
+}  
+
+function clearTextBox() {  
+    
+    $('#updateCustomer').hide();
+    $('#CustomerName').val("");  
+    $('#FatherName').val("");  
+    $('#MotherName').val("");  
+    $("#radio1").attr("checked", false);
+    $("#radio2").attr("checked", false);
+    $("#radio3").attr("checked", false);
+    $('#Country').val("");  
+    $("#add-address").html('');
+    $('.add_item_btn').show();
+    $('#saveCustomer').show();
+    $('#resetCustomer').show();
+
+    $("#CustomerPhoto").show();
+
+
+    $('#editCustomer').hide();
+    $('#addCustomer').hide();
+    $('#deleteCustomer').hide();
+
+    $('#CustomerName').prop( "disabled",false).css('border-color', 'grey');  
+    $('#FatherName').prop( "disabled", false).css('border-color', 'grey');
+    $('#MotherName').prop("disabled", false).css('border-color', 'grey');
+    $('#Country').prop( "disabled", false).css('border-color', 'grey');
+
+    $("#CustomerPhoto").prop("disabled", false);
+
+    $("#radio1").prop( "disabled", false);
+    $("#radio2").prop( "disabled", false);
+    $("#radio3").prop( "disabled", false);
+
+    $('#ItemPreview').removeAttr('src');
+    $('#CustomerPhoto').val("");
+}  
+
+
+
+function validate() {  
+    var isValid = true;  
+    if ($('#CustomerName').val().trim() == "") {  
+        $('#CustomerName').css('border-color', 'Red');  
+        isValid = false;  
+    } 
+    return isValid;  
+}  
+    </script>
