@@ -14,6 +14,9 @@ modify `appsettings.json` and add localhost connection string.
   ** user = localhost user 
    ** password = localhost database user's password
 
+## Import attrached .Sql file on server
+/Backend/Sql_script/Solution (1).sql
+
 
 ## Api
 
