@@ -33,8 +33,8 @@ namespace api.Controllers
             }
 
             var customer = _mapper.Map<Customer>(customerDto);
-            customer.Country = new Country();
-            customer.Country.CountryName = customerDto.CountryName;
+            customer.CountryId = customerDto.CountryId;
+            customer.Country = await _unitOfWork.Countries.GetByIdAsync(customerDto.CountryId);
             customer.CustomerAddresses = customerAddress;
             customer.CustomerPhoto = await this.GetBytes(customerDto.Photo);
             await _unitOfWork.Customer.AddAsync(customer);
@@ -75,8 +75,9 @@ namespace api.Controllers
             }
 
             var customer = _mapper.Map<Customer>(customerDto);
-            customer.Country = new Country();
-            customer.Country.CountryName = customerDto.CountryName;
+            customer.Id = Id;
+            customer.CountryId = customerDto.CountryId;
+            customer.Country = await _unitOfWork.Countries.GetByIdAsync(customerDto.CountryId);
             customer.CustomerAddresses = customerAddress;
             customer.CustomerPhoto = await this.GetBytes(customerDto.Photo);
 

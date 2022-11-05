@@ -21,8 +21,8 @@ namespace api.Dto
         [Required, Range(0,2)]
         public int MaritalStatus {get;set;}
 
-        [Required, MaxLength(50)]
-        public string CountryName {get; set;} = null!;
+        [Required]
+        public int CountryId {get; set;}
 
         [Required]
         public IFormFile Photo {get;set;} = null!;

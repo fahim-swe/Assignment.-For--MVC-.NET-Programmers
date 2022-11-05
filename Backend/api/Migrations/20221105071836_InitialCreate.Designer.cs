@@ -11,7 +11,7 @@ using infrastructure.Database.StoreContext;
 namespace api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221103094452_InitialCreate")]
+    [Migration("20221105071836_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,8 +29,7 @@ namespace api.Migrations
 
                     b.Property<string>("CountryName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -48,8 +47,7 @@ namespace api.Migrations
 
                     b.Property<string>("CustomerName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("longtext");
 
                     b.Property<byte[]>("CustomerPhoto")
                         .IsRequired()
@@ -57,21 +55,18 @@ namespace api.Migrations
 
                     b.Property<string>("FatherName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("MaritalStatus")
                         .HasColumnType("int");
 
                     b.Property<string>("MotherName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryId")
-                        .IsUnique();
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Customers");
                 });
@@ -99,8 +94,8 @@ namespace api.Migrations
             modelBuilder.Entity("core.Entities.Customer", b =>
                 {
                     b.HasOne("core.Entities.Country", "Country")
-                        .WithOne("Customer")
-                        .HasForeignKey("core.Entities.Customer", "CountryId")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -116,12 +111,6 @@ namespace api.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("core.Entities.Country", b =>
-                {
-                    b.Navigation("Customer")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("core.Entities.Customer", b =>

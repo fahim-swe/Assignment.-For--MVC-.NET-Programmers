@@ -19,7 +19,7 @@ namespace api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CountryName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    CountryName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -34,11 +34,11 @@ namespace api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CustomerName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    CustomerName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    FatherName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    FatherName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    MotherName = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    MotherName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     MaritalStatus = table.Column<int>(type: "int", nullable: false),
                     CustomerPhoto = table.Column<byte[]>(type: "longblob", nullable: false),
@@ -86,8 +86,7 @@ namespace api.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_CountryId",
                 table: "Customers",
-                column: "CountryId",
-                unique: true);
+                column: "CountryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
